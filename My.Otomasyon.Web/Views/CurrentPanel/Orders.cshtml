@@ -1,0 +1,27 @@
+﻿@model List<OrderViewModel>
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_CurrentLayout.cshtml";
+}
+
+<h1>Orders</h1>
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Date</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@item.Product.ProductName</td>
+            <td>@item.Price</td>
+            <td>@Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")</td>
+
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,71 @@
+﻿@model List<BillsListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+        <th>Bill Seri/Order no </th>
+
+
+        <th>Date</th>
+        <th>Hour </th>
+        <th>Total </th>
+        <th>Deliverer </th>
+        <th>Receiver </th>
+
+        <th>Update</th>
+       
+
+        <th>İnvoice</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+
+
+            <td>
+                @item.BillSeriNo  @item.BillOrderno
+            </td>
+
+
+            <td>
+                @Convert.ToDateTime(item.BillDate).ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @item.Hour
+            </td>
+            <td>
+                @item.Total
+            </td>
+            <td>
+                @item.Deliverer
+            </td>
+            <td>
+                @item.Receiver
+            </td>
+
+
+            <td>
+                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+            </td>
+           
+
+            <td>
+                <a asp-action="BillDetail" asp-route-id="@item.Id" class="btn btn-default" style="background-color:chocolate ">İnvoice</a>
+            </td>
+
+
+        </tr>
+
+    }
+</table>
+
+<a asp-action="Add" class="btn btn-info"> Add a New Bill</a>

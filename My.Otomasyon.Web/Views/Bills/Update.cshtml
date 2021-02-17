@@ -1,0 +1,45 @@
+﻿@model BillUpdateView
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Update</h2>
+<br />
+
+<form asp-action="Update" method="post">
+    
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.LabelFor(i => i.BillSeriNo)
+            @Html.EditorFor(model => model.BillSeriNo, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.LabelFor(i => i.BillOrderno)
+            @Html.EditorFor(model => model.BillOrderno, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.LabelFor(i => i.BillDate)
+            @Html.EditorFor(model => model.BillDate, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.LabelFor(i => i.Hour)
+            @Html.EditorFor(model => model.Hour, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.LabelFor(i => i.VergiDairesi)
+            @Html.EditorFor(model => model.VergiDairesi, new { htmlAttributes = new { @class = "form-control" } })
+
+            @Html.LabelFor(i => i.Receiver)
+            @Html.EditorFor(model => model.Receiver, new { htmlAttributes = new { @class = "form-control" } })
+            <br />
+            @Html.LabelFor(i => i.Deliverer)
+            @Html.EditorFor(i => i.Deliverer, new { htmlAttributes = new { @class = "form-control" } })
+            <br />
+
+        </div>
+
+        <div asp-validation-summary="ModelOnly"></div>
+
+        @Html.HiddenFor(i => i.Id)
+    </div>
+    <button class="btn btn-warning">Save</button>
+</form>
+

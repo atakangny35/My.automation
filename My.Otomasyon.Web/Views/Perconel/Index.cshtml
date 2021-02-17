@@ -1,0 +1,54 @@
+﻿@model List<PerconelListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Picture</th>
+        <th>Departman</th>
+        <th>Update</th>
+        <th>Sales</th>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+
+
+            <td>
+                @item.Name
+            </td>
+
+            <td>
+                @item.Surname
+            </td>
+            <td><img src="@item.PictureUrl" class="img-fluid" alt="@item.Name" /></td>
+            <td>
+                @item.Departman.DepartmanName
+            </td>
+
+            <td>
+                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+            </td>
+
+            <td>
+                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-default" style="background-color:chocolate ">Details</a>
+            </td>
+
+        </tr>
+
+    }
+</table>
+<a href="/Perconel/Add" class="btn btn-primary">New Perconel</a>
+

@@ -1,0 +1,57 @@
+﻿@model ProductAddViewModel
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form asp-action="AddProduct" method="post" class="w-75 mt-2 mx-auto">
+    <div class="form-group">
+        <label asp-for="ProductName"></label>
+        <span asp-validation-for="ProductName" class="text-warning"></span>
+        <input type="text" asp-for="ProductName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BuyingPrice"></label>
+        <span asp-validation-for="BuyingPrice" class="text-warning"></span>
+        <input type="text" asp-for="BuyingPrice" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SellingPrice"></label>
+        <span asp-validation-for="SellingPrice" class="text-warning"></span>
+        <input type="text" asp-for="SellingPrice" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Marka"></label>
+        <span asp-validation-for="Marka" class="text-warning"></span>
+        <input type="text" asp-for="Marka" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Stok"></label>
+        <span asp-validation-for="Stok" class="text-warning"></span>
+        <input type="text" asp-for="Stok" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Condition"></label>
+        <span asp-validation-for="Condition" class="text-warning"></span>
+        <input type="text" asp-for="Condition" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductPicture"></label>
+        <span asp-validation-for="ProductPicture" class="text-warning"></span>
+        <input type="text" asp-for="ProductPicture" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <span asp-validation-for="Description" class="text-warning"></span>
+        <input type="text" asp-for="Description" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId"></label>
+        <span asp-validation-for="CategoryId" class="text-warning"></span>
+        <select asp-for="CategoryId" asp-items="(List<SelectListItem>)ViewBag.dropcategory" class="form-control">
+        </select>
+    </div>
+    <button type="submit" class="btn btn-info">Update</button>
+
+</form>
+

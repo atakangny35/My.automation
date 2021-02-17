@@ -1,0 +1,127 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core.Common
+
+@model X.PagedList.IPagedList<CategoryListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+
+        <th>Category Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+
+
+            <td>
+                @item.CategoryName
+            </td>
+           
+
+
+           
+            <td>
+                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+            </td>
+
+            <td>
+                <a href=" " class="btn btn-danger" data-toggle="modal" data-target="#Sil" data-verim="@item.Id">Delete</a>
+            </td>
+
+
+        </tr>
+
+    }
+</table>
+
+@Html.PagedListPager((IPagedList)Model, Page => Url.Action("Index", new { Page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+
+
+}
+
+)
+<br />
+<a asp-action="Add" class="btn btn-primary">New Category</a>
+
+
+<div class="modal fade" id="Sil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you Sure? Data will be delete permanently!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır, Vazgeç</button>
+                <button type="button" id="btnSil" class="btn btn-primary">Evet, sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section JavaScript{
+
+    <script>
+
+    $(document).ready(function () {
+
+        $("#Sil").on("show.bs.modal", function (event) {
+
+            let tetikleyici = $(event.relatedTarget);
+            let id = tetikleyici.data("verim");
+
+            $("#btnSil").click(function () {
+
+                $.ajax({
+
+                    type: "Get",
+                    url: "./Category/Delete",
+                    data: { id: id },
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8;",
+                    success: function () {
+
+                        window.location.reload();
+                    },
+                    error: function (error) {
+                        alert(error.statusText);
+                    }
+
+                })
+
+            });
+
+
+        })
+
+
+
+
+    })
+
+    </script>
+
+}

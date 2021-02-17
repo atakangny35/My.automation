@@ -1,0 +1,157 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Core.Common
+@model X.PagedList.IPagedList<ProductListWithCategoriesModel>
+
+
+
+
+
+@{
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+
+
+
+        <th>Product Name </th>
+        <th> Brand </th>
+        <th>Stock </th>
+        <th> Buying Price </th>
+        <th> Selling Price </th>
+        <th>Category</th>
+        <th>New Sale</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+
+
+            <td>
+                @item.ProductName
+            </td>
+            <td>
+                @item.Marka
+            </td>
+            <td>
+                @item.Stok
+            </td>
+
+            <td>
+                @item.BuyingPrice
+            </td>
+            <td>
+                @item.SellingPrice
+            </td>
+
+            <td>
+                @item.Category.CategoryName
+            </td>
+
+
+            <td>
+                <a asp-action="Sell" asp-controller="Sales" asp-route-id="@item.Id" class="btn btn-danger">Sell</a>
+            </td>
+            <td>
+                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+            </td>
+
+            <td>
+                <a href=" " class="btn btn-danger" data-toggle="modal" data-target="#Sil" data-verim="@item.Id">Delete</a>
+            </td>
+
+
+        </tr>
+
+    }
+</table>
+
+@Html.PagedListPager((IPagedList)Model, Page => Url.Action("Index", new { Page }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+    {"page-link"}
+
+
+}
+
+)
+<br />
+<a asp-action="AddProduct" class="btn btn-primary">New Product</a>
+
+
+<div class="modal fade" id="Sil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Silmek istediğinize emin misiniz? bu kayıt tamamen silinecek!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır, Vazgeç</button>
+                <button type="button" id="btnSil" class="btn btn-primary">Evet, sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section JavaScript{ 
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#Sil").on("show.bs.modal", function (event) {
+
+            let tetikleyici = $(event.relatedTarget);
+            let id = tetikleyici.data("verim");
+
+            $("#btnSil").click(function () {
+
+                $.ajax({
+
+                    type: "Get",
+                    url: "./Product/Delete",
+                    data: { id: id },
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8;",
+                    success: function () {
+                         
+                        window.location.reload();
+                    },
+                    error: function (error) {
+                        alert(error.statusText);
+                    }
+
+                })
+
+            });
+
+
+        })
+
+
+
+
+    })
+
+</script>
+    
+}
+
+
+
+

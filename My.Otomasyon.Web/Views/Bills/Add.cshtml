@@ -1,0 +1,47 @@
+﻿@model BillsAddView
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form asp-action="Add" method="post" class="w-75 mx-auto mt-2">
+    <div class="form-group">
+        <label asp-for="BillSeriNo"></label>
+        <span asp-validation-for="BillSeriNo" class="text-warning"></span>
+        <input type="text" asp-for="BillSeriNo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BillOrderno"></label>
+        <span asp-validation-for="BillOrderno" class="text-warning"></span>
+        <input type="text" asp-for="BillOrderno" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Deliverer"></label>
+        <span asp-validation-for="Deliverer" class="text-warning"></span>
+        <input type="text" asp-for="Deliverer" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Receiver"></label>
+        <span asp-validation-for="Receiver" class="text-warning"></span>
+        <input type="text" asp-for="Receiver" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="BillDate"></label>
+        <span asp-validation-for="BillDate" class="text-warning"></span>
+        <input type="text" asp-for="BillDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Hour"></label>
+        <span asp-validation-for="Hour" class="text-warning"></span>
+        <input type="text" asp-for="Hour" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="VergiDairesi"></label>
+        <span asp-validation-for="VergiDairesi" class="text-warning"></span>
+        <input type="text" asp-for="VergiDairesi" class="form-control" />
+    </div>
+    <div asp-validation-summary="ModelOnly" class="text-warning"></div>
+    <button type="submit" class="btn btn-info">Save</button>
+</form>
+
+

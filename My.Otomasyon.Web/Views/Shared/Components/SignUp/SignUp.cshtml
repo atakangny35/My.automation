@@ -1,0 +1,26 @@
+﻿@model CurrentAddModel
+deneme denemendenen
+<div class="login-form login-form-left">
+    <div class="agile-row">
+        <h3>Register form</h3>
+        <div class="login-agileits-top">
+            <form method="post" asp-action="SignUp">
+                <input type="text" class="name" asp-for="@Model.Name" Placeholder=" Name" required="" />
+                <input type="text" class="name" asp-for="Surname" Placeholder=" Surname" required="" />
+                <input type="text" class="name" asp-for="City" Placeholder=" City" required="" />
+                <input type="email" class="email" asp-for="Email" Placeholder="Email" required="" />
+                <input type="text" class="name" asp-for="UserName" Placeholder="Username" required="" />
+                <input type="password" class="password" asp-for="Password" Placeholder="Password" required="" />
+                <input type="password" class="password" asp-for="ConfirmPassword" Placeholder="Password" required="" />
+                <div class="login-check">
+                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> I Accept to the Terms &amp; Conditions</label>
+                </div>
+                <div asp-validation-summary="ModelOnly"></div>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    

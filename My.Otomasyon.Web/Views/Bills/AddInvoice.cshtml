@@ -1,0 +1,46 @@
+﻿@model FaturaKalemAddView
+@{
+    ViewData["Title"] = "AddInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<br />
+<h2>New İnvoice item </h2>
+<br />
+<form method="post" asp-action="AddInvoice" class="form-group">
+
+    <b> @Html.LabelFor(model => model.Desciription, new { htmlAttributes = new { @class = "form-control" } }) </b>
+    <br />
+    <div class="col-md-10">
+
+        @Html.EditorFor(model => model.Desciription, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+    <b> @Html.LabelFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } }) </b>
+    <br />
+    <div class="col-md-10">
+
+        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+    <b> @Html.LabelFor(model => model.BirimFiyat, new { htmlAttributes = new { @class = "form-control" } }) </b>
+    <br />
+    <div class="col-md-10">
+
+        @Html.EditorFor(model => model.BirimFiyat, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+
+    <b> @Html.LabelFor(model => model.BillsId, new { htmlAttributes = new { @class = "form-control" } }) </b>
+    <div class="col-md-10">
+
+
+        @*@Html.TextBoxFor(@Html.TextBox("NameOfTheTextbox", (String)ViewBag.SomeValue), new { htmlAttributes = new { @class = "form-control" } })*@
+       
+        <input type="hidden" asp-for="BillsId" value="@ViewBag.id" />
+    </div>
+    <br />
+    <button class="btn btn-info">Save</button>
+</form>

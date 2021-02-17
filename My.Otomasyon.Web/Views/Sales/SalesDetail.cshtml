@@ -1,0 +1,53 @@
+﻿@model SellingMovesListView
+@{
+    ViewData["Title"] = "SalesDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-hover">
+    <tr>
+        
+        <th>
+           Product Name
+
+        </th>
+        <th>
+            Current
+
+        </th>
+       
+        <th>
+            Price
+
+        </th>
+        <th>
+           Number
+
+        </th>
+        <th>
+           TotalPrice
+
+        </th>
+        <th>
+           Date
+
+        </th>
+
+
+    </tr>
+
+   
+        <tr>
+            
+            <td>@Model.Products.ProductName</td>
+            <td>@Model.Cariler.Name @Model.Cariler.Surname </td>          
+            <td>@Model.Price</td>
+            <td>@Model.Adet</td>
+            <td>@Model.TotalPrice</td>
+            <td>@Model.Date</td>
+
+        </tr>
+    
+
+</table>
+

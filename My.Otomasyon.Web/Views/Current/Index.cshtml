@@ -1,0 +1,114 @@
+﻿@model IEnumerable<CurrentListView>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<table class="table table-striped" style="margin-top:20px">
+    <tr>
+
+        <th>@Html.DisplayNameFor(model => model.Id)</th>
+        <th> @Html.DisplayNameFor(model => model.Name) </th>
+        <th> @Html.DisplayNameFor(model => model.Surname) </th>
+        <th> @Html.DisplayNameFor(model => model.City) </th>
+        <th> @Html.DisplayNameFor(model => model.Email) </th>
+        <th>Delete</th>
+        
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+            <td>
+                @item.Id
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Surname
+            </td>
+            <td>
+                @item.City
+            </td>
+            <td>
+                @item.Email
+            </td>
+            <td>
+                <a data-toggle="modal" data-target="#Sil" data-verim="@item.Id" class="btn btn-danger">Delete</a>
+            </td>
+            
+
+        </tr>
+
+    }
+</table>
+
+<div class="modal fade" id="Sil" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Uyarı</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you Sure? Data will be delete permanently!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hayır, Vazgeç</button>
+                <button type="button" id="btnSil" class="btn btn-primary">Evet, sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section JavaScript{
+
+    <script>
+
+    $(document).ready(function () {
+
+        $("#Sil").on("show.bs.modal", function (event) {
+
+            let tetikleyici = $(event.relatedTarget);
+            let id = tetikleyici.data("verim");
+
+            $("#btnSil").click(function () {
+
+                $.ajax({
+
+                    type: "Get",
+                    url: "./Current/Delete",
+                    data: { id: id },
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8;",
+                    success: function () {
+
+                        window.location.reload();
+                    },
+                    error: function (error) {
+                        alert(error.statusText);
+                    }
+
+                })
+
+            });
+
+
+        })
+
+
+
+
+    })
+
+    </script>
+
+}
+

@@ -1,0 +1,19 @@
+﻿@model CategoryUpdateViewModel
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form a method="post" asp-action="Update" class="mx-auto mt-2 w-75">
+
+    <div class="form-group">
+        <label asp-for="CategoryName"></label>
+        <span asp-validation-for="CategoryName"></span>
+        <input type="text" asp-for="CategoryName"  class="form-control" />
+    </div>
+    <input type="hidden" asp-for="Id"  />
+    <button type="submit" class="btn " style="background-color:deeppink">Save</button>
+
+
+</form>
+

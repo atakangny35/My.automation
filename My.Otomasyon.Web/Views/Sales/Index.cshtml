@@ -1,0 +1,94 @@
+﻿@model List<SellingMovesListView>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table id="tbl1" class="table table-bordered" style="margin-top:20px">
+    <thead>
+        <tr>
+
+
+
+            <th> Product</th>
+            <th>Current </th>
+            <th>Perconel </th>
+            <th>Number </th>
+            <th>Price </th>
+            <th>Total Price </th>
+            <th>Date </th>
+            <th>Update</th>
+            <th>Details</th>
+
+
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+
+
+        <tr>
+
+
+            <td>
+                @item.Products.ProductName
+            </td>
+            <td>
+                @item.Cariler.Name @item.Cariler.Surname
+            </td>
+
+            <td>
+                dolacak
+            </td>
+            <td>
+                @item.Adet
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td>
+                @item.TotalPrice
+            </td>
+
+
+            <td>
+                @Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")
+            </td>
+
+            <td>
+                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+            </td>
+            <td>
+                <a asp-action="SalesDetail" asp-route-id="@item.Id" class="btn btn-default" style="background-color:chocolate ">Details</a>
+            </td>
+
+
+        </tr>
+
+    }
+</table>
+<a href="/Sales/NewSale" class="btn btn-primary">Sell!!</a>
+
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+
+
+
+@section JavaScript
+{
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+    <script>
+        $('#tbl1').dataTable({});
+    </script>
+
+}
+
+
+
+
+
+

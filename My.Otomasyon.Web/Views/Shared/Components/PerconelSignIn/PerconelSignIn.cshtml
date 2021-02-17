@@ -1,0 +1,18 @@
+﻿@model PerconelSignInModel
+<div class="login-form login-form-left">
+    <div class="agile-row">
+        <h3>Perconel deneme Login</h3>
+
+        <div class="clear"></div>
+        <div class="login-agileits-top">
+            <form asp-action="PerconelLogin" method="post">
+                <input type="text" class="name" asp-for="UserName" Placeholder="Username" required="" />
+                <input type="password" class="password" asp-for="Password" Placeholder="Password" required="" />
+                <div class="login-check">
+                    <label class="checkbox"><input type="checkbox" asp-for="RememberMe" checked=""><i> </i>Remember me</label>
+                </div>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </div>
+</div>
